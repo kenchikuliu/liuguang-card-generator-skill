@@ -1,0 +1,33 @@
+{
+  "name": "liuguang-card-generator",
+  "version": "1.4.0",
+  "description": "Bilingual social media card generator (ZH/EN) with Charlii style",
+  "bin": {
+    "liuguang-card-gen": "bin/liuguang-card-gen.js"
+  },
+  "files": [
+    "bin/",
+    "generator.py",
+    "card_preprocessor.py",
+    "translator.py",
+    "social_copy_generator.py",
+    "image_handler.py",
+    "content_analyzer.py",
+    "create_modern_cover.py",
+    "requirements.txt",
+    "README.md"
+  ],
+  "scripts": {
+    "postinstall": "node bin/postinstall.js"
+  },
+  "keywords": ["card", "xiaohongshu", "social-media", "bilingual", "chinese"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenchikuliu/liuguang-card-generator-skill.git"
+  },
+  "homepage": "https://github.com/kenchikuliu/liuguang-card-generator-skill#readme",
+  "engines": {
+    "node": ">=16"
+  }
+}

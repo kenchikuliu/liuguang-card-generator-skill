@@ -94,6 +94,50 @@ liuguang-card-generator/
 - **英文居中**：EN 卡片全部居中对齐
 - **中英混排保护**：英文单词禁止拆行
 
+## 🎨 Firefly Card API — 模板与样式参数
+
+卡片渲染使用 [302.ai Firefly Card API](https://fireflycard-api.302ai.cn)。
+
+### 模板（`temp`）
+
+目前使用 `tempA`（横向文字卡片）。API 支持多种模板，可在 `generator.py` 的 `CardGenerator.__init__` 中修改：
+
+```python
+self.template = "tempA"  # 可选: tempA, tempB, tempC, ...
+```
+
+### 背景（`backgroundName`）
+
+当前默认：`vertical-blue-color-29`（蓝色渐变）。根据内容主题可选：
+
+| 主题 | backgroundName | 效果 |
+|------|----------------|------|
+| 科技（默认） | `vertical-blue-color-29` | 蓝色渐变 |
+| 商务 | `vertical-gradient-color-1` | 渐变色 |
+| 教育 | `vertical-pure-color-white` | 纯白 |
+| 创意 | `vertical-gradient-color-2` | 彩色渐变 |
+
+修改 `generator.py` 中的 `CardStyle`：
+
+```python
+class CardStyle:
+    backgroundName: str = "vertical-blue-color-29"  # 改这里
+    font: str = "Alibaba-PuHuiTi-Regular"
+    width: int = 440
+    height: int = 586
+    align: str = "left"
+```
+
+### 字体（`font`）
+
+当前使用 `Alibaba-PuHuiTi-Regular`（阿里巴巴普惠体）。
+
+### 卡片尺寸
+
+固定 `440 × 586`（Portrait，适合手机屏幕和小红书）。
+
+---
+
 ## 📄 License
 
 MIT

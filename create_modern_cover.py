@@ -102,10 +102,11 @@ def create_modern_cover(
             font_path = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
 
         try:
-            font_date = ImageFont.truetype(font_path, 12)
-            font_title = ImageFont.truetype(font_path, 26)  # 标题适中，避免溢出
-            font_content = ImageFont.truetype(font_path, 14)  # 正文
-            font_footer = ImageFont.truetype(font_path, 11)
+            font_index = 2 if font_path.endswith('.ttc') else 0
+            font_date = ImageFont.truetype(font_path, 12, index=font_index)
+            font_title = ImageFont.truetype(font_path, 26, index=font_index)  # 标题适中，避免溢出
+            font_content = ImageFont.truetype(font_path, 14, index=font_index)  # 正文
+            font_footer = ImageFont.truetype(font_path, 11, index=font_index)
         except:
             font_date = ImageFont.load_default()
             font_title = ImageFont.load_default()

@@ -4,6 +4,7 @@
 将文字内容转换为 6 张精美的图文卡片
 """
 
+import os
 import requests
 import json
 import sys

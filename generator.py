@@ -921,7 +921,7 @@ Source draft (use the topic, rewrite the content):
         _GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
         try:
             if language == "en":
-                prompt = f"""Rewrite this article title to be more catchy and engaging for social media (Xiaohongshu/X). Under 20 characters. No hashtags, no markdown. Just the title text.
+                prompt = f"""Rewrite this article title to be more catchy and engaging for social media (Xiaohongshu/X). Under 6 words, max 30 characters. No hashtags, no markdown. Just the title text.
 
 Original: {raw_title}
 
@@ -1525,9 +1525,10 @@ Output ONLY the new title, nothing else."""
         # 1. 提取标题和核心观点，用 AI 生成吸引人的封面标题
         raw_title = title or self._extract_title(content)
         cover_title = self._generate_cover_title(raw_title, cleaned_content, language)
-        # 最多26个字（两行）
-        if len(cover_title) > 14:
-            cover_title = cover_title[:14]
+        # 中文最多14字，英文最多30字（两行）
+        max_title_len = 30 if language == 'en' else 14
+        if len(cover_title) > max_title_len:
+            cover_title = cover_title[:max_title_len]
         key_quote = self._extract_key_quote(content)
 
         # 2. 生成封面图片（如果需要，传入标题和核心观点）

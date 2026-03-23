@@ -148,7 +148,7 @@ def create_modern_cover(
         max_title_width = content_width
 
         # 智能标题换行（中英文混合友好）
-        def smart_title_wrap(text, max_chars=13):
+        def smart_title_wrap(text, max_chars=12):
             """按标点或词边界换行，避免截断英文单词"""
             if '\n' in text:
                 return [l.strip() for l in text.split('\n') if l.strip()]

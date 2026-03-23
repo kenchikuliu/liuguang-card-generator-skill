@@ -929,7 +929,7 @@ Content preview: {content[:200]}
 
 Output ONLY the new title, nothing else."""
             else:
-                prompt = f"""将以下文章标题改写得更吸引眼球，适合小红书/X 封面。要求：20字以内，不用 # 符号，不用 Markdown，直接输出标题文字，不要加任何解释。
+                prompt = f"""将以下文章标题改写得更吸引眼球，适合小红书/X 封面。要求：12字以内，不用 # 符号，不用 Markdown，直接输出标题文字，不要加任何解释。
 
 原标题：{raw_title}
 
@@ -1526,8 +1526,8 @@ Output ONLY the new title, nothing else."""
         raw_title = title or self._extract_title(content)
         cover_title = self._generate_cover_title(raw_title, cleaned_content, language)
         # 最多26个字（两行）
-        if len(cover_title) > 26:
-            cover_title = cover_title[:26]
+        if len(cover_title) > 14:
+            cover_title = cover_title[:14]
         key_quote = self._extract_key_quote(content)
 
         # 2. 生成封面图片（如果需要，传入标题和核心观点）

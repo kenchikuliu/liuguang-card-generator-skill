@@ -13,6 +13,15 @@ from typing import List, Dict, Optional
 from dataclasses import dataclass, asdict
 from card_preprocessor import preprocess_card_text
 
+# 自动加载本地 .env.local（不提交到 git）
+_env_local = os.path.join(os.path.dirname(__file__), '.env.local')
+if os.path.exists(_env_local):
+    for _line in open(_env_local):
+        _line = _line.strip()
+        if _line and not _line.startswith('#') and '=' in _line:
+            _k, _v = _line.split('=', 1)
+            os.environ.setdefault(_k.strip(), _v.strip().strip('"'))
+
 
 @dataclass
 class Card:

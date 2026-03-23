@@ -9,6 +9,15 @@ import requests
 from typing import Dict, List
 from anthropic import Anthropic
 
+# 自动加载本地 .env.local
+_env_local = os.path.join(os.path.dirname(__file__), '.env.local')
+if os.path.exists(_env_local):
+    for _line in open(_env_local):
+        _line = _line.strip()
+        if _line and not _line.startswith('#') and '=' in _line:
+            _k, _v = _line.split('=', 1)
+            os.environ.setdefault(_k.strip(), _v.strip().strip('"'))
+
 # Groq API 配置（用于英文平台文案，绕开受限代理）
 _GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 _GROQ_MODEL = "llama-3.3-70b-versatile"
@@ -281,6 +290,9 @@ class SocialCopyGenerator:
                     response_text = response_text[:-3]
 
                 response_text = response_text.strip()
+
+                # 替换中文引号为标准引号
+                response_text = response_text.replace('\u201c', '"').replace('\u201d', '"').replace('\u2018', "'").replace('\u2019', "'")
 
                 # 从第一个 { 到最后一个 } 提取 JSON
                 start = response_text.find('{')
